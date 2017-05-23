@@ -6,9 +6,9 @@ class BasicClient(object):
     def __init__(self, address, port):
         self.address = address
         self.port = int(port)
-        self.socket = socket.socket()
 
     def send(self, message):
+        self.socket = socket.socket()
         self.socket.connect((self.address, self.port))
         self.socket.send(message)
 
@@ -18,5 +18,6 @@ if __name__ == '__main__':
         print "Please supply a server address and port."
         sys.exit()
     client = BasicClient(args[1], args[2])
-    msg = raw_input()
-    client.send(msg)
+    while True:
+        msg = raw_input()
+        client.send(msg)

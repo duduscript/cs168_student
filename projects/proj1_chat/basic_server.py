@@ -9,14 +9,14 @@ class BasicServer(object):
         self.socket.bind((self.address, int(port)))
         self.socket.listen(5)
 
-    def handle(self, message, socket):
-        print(message)
+    def handle(self, message, socket, address):
+        print(message, socket, address)
 
     def run(self):
         while True:
             (new_socket, address) = self.socket.accept()
             message = new_socket.recv(1024)
-            handle(message, socket)
+            self.handle(message, new_socket, address)
 
 if __name__ == '__main__':
     args = sys.argv
